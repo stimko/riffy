@@ -1,4 +1,4 @@
 riffy
 =====
 
-Music Collaboration Platform(MCP) built with a scalatra REST API and Angular powered client
+Music Collaboration Platform(MCP) built with node and angular
