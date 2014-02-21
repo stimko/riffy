@@ -1,0 +1,28 @@
+html,
+body,
+[ng-view],
+.content {
+  height: 100%;
+}
+#login {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+}
+#login form {
+  width: 30em;
+  padding: 25px;
+  background: #6c6cb7;
+  border-radius: 10px;
+}
+#login form .ng-invalid.ng-dirty {
+  background: #ffc0cb;
+}
