@@ -9,7 +9,7 @@ function compile(str, path){
 }
 
 app.configure(function(){
-  app.set('views', __dirname + '/server/views');
+  app.set('views', __dirname + '/server/social/views');
   app.set('view engine', 'jade');
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
