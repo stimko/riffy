@@ -2,7 +2,7 @@ section#login
   form(name="loginForm", role="form", ng-submit="login(user, loginForm)")
     div.form-group
       label Username
-      input(ng-model="user.email", required, type="email", class="form-control", placeholder="Enter email")
+      input(ng-model="user.username", required, type="text", class="form-control", placeholder="Enter username")
     div.form-group
       label Password
       input(ng-model="user.password", required, type="password", class="form-control", placeholder="Password")
