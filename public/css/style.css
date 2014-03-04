@@ -4,6 +4,9 @@ body,
 .content {
   height: 100%;
 }
+ul {
+  list-style-type: none;
+}
 #login {
   width: 100%;
   height: 100%;
@@ -25,4 +28,19 @@ body,
 }
 #login form .ng-invalid.ng-dirty {
   background: #ffc0cb;
+}
+.profile {
+  padding: 20px;
+}
+.playlist {
+  width: 400px;
+}
+.playlist .playlistItem {
+  padding: 10px;
+}
+.playlist .playlistItem .playButton {
+  width: 55px;
+  height: 55px;
+  background: #6c6cb7;
+  border-radius: 34px;
 }

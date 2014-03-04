@@ -1,36 +1,42 @@
 var express = require('express'),
-    stylus = require('stylus');
+    mongoose = require('mongoose'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy
 
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var app = express();
 
-function compile(str, path){
-  return stylus(str).set('filename', path);
-}
+var config = require('./server/config/config')[env];
+require('./server/config/express')(app, config);
+require('./server/config/mongoose')(config);
+require('./server/config/routes')(app);
 
-app.configure(function(){
-  app.set('views', __dirname + '/server/social/views');
-  app.set('view engine', 'jade');
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(stylus.middleware(
-    {
-      src: __dirname + '/public',
-      compile:compile
-    }
-  ));
-  app.use(express.static(__dirname + '/public'));
+var User = mongoose.model('User');
+passport.use(new LocalStrategy(
+  function(username, password, done){
+    User.findOne({username:username}).exec(function(err, user){
+      if(user)
+        return done(null, user);
+      else
+        return done(null, false); 
+    })  
+  }
+));
 
+passport.serializeUser(function(user, done){
+  if(user)
+    done(null, user._id);
 });
 
-app.get('/partials/:partialPath', function(req, res){
-  res.render('partials/'+ req.params.partialPath);
+passport.deserializeUser(function(id, done){
+  User.findOne({_id:id}).exec(function(err, user){
+    if(user)
+      return done(null, user);
+    else
+      return done(null, false);
+  });
 });
 
-app.get('*', function(req, res){
-  res.render('index');
-});
 
-var port = process.env.PORT || 4040;
-app.listen(port);
+app.listen(config.port);
 console.log('Listening...');

@@ -1,0 +1,8 @@
+section.profile(ng-controller="ProfileController")
+  h1(ng-bind="user.username")
+  img(src="default")
+  ul.playlist(ng-controller="PlaylistController")
+    li.playlistItem(ng-repeat="riff in user.riffs")
+      button.playButton(ng-click="playTrack(riff.id)")
+      audio
+        source(src="riff.url")

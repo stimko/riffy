@@ -1,3 +1,0 @@
-riffyApp.directive('activityStream', ['', function(){
-  
-}])

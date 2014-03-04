@@ -1,9 +1,15 @@
 global-reset()
+
+$purple = #6C6CB7
+
 html
 body 
 [ng-view]
 .content 
   height 100%
+
+ul
+  list-style-type none
 
 #login
   width 100%
@@ -25,10 +31,26 @@ body
   form
     width 30em
     padding 25px
-    background #6C6CB7
+    background $purple
     border-radius 10px
 
 #login 
   form 
     .ng-invalid.ng-dirty
-      background: pink;
+      background pink
+
+.profile
+  padding 20px
+
+.playlist
+  width 400px
+  .playlistItem
+    padding 10px
+    .playButton
+      width 55px
+      height 55px
+      background $purple
+      border-radius 34px
+        
+        
+        
