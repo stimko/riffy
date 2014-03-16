@@ -1,5 +1,8 @@
 extends ../includes/layout
 
 block main-content
+  .navbar(ng-controller="ShellController")
+    .navbar-right
+      button(ng-click="logout()", ng-show="identity.isAuthenticated()", class="btn, btn-default") Sign Out
   section.content
     div(ng-view)

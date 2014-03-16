@@ -12,10 +12,10 @@ module.exports = function(app, config){
     app.set('view engine', 'jade');
     app.use(express.logger('dev'));
     app.use(express.cookieParser());
-    app.use(passport.initialize());
-    app.use(express.session({secret:'riffy'}));
-    app.use(passport.session());
     app.use(express.bodyParser());
+    app.use(express.session({secret:'riffy'}));
+    app.use(passport.initialize());
+    app.use(passport.session());
     app.use(stylus.middleware(
       {
         src: config.rootPath + '/public',

@@ -1,14 +1,25 @@
-riffyApp.factory('loginService', function($http, $location){
+riffyApp.factory('loginService', function($http, $q, identity){
   return {
-    login: function(user){
-      $http.post('/login', {username:user.username, password:user.password}).then(function(response){
+    login: function(username, password){
+      var dfd = $q.defer();
+      $http.post('/login', {username:username, password:password}).then(function(response){
         if (response.data.success){
-          console.log('logged in');
-          this.user = user;
-          $location.path('profile/' + user.username);
+          identity.currentUser = response.data.user;
+          dfd.resolve(true);
         }
-        else console.log('FAIL');
+        else {
+          dfd.resolve(false);
+        }
       });
+      return dfd.promise;
+    },
+    logout: function(){
+      var dfd = $q.defer();
+      $http.post('/logout', {logout:true}).then(function(){
+       identity.currentUser = undefined;
+       dfd.resolve(true);
+      });
+      return dfd.promise;
     }
   };
 });

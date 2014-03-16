@@ -1,4 +1,4 @@
-section#login
+section#login(ng-hide="identity.isAuthenticated()")
   form(name="loginForm", role="form", ng-submit="login(user, loginForm)")
     div.form-group
       label Username
