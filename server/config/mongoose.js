@@ -12,7 +12,8 @@ module.exports = function(config){
     username: String,
     riffs: [String],
     salt: String,
-    hashedPassword: String
+    hashedPassword: String,
+    roles: [String]
   });
 
   userSchema.methods = {

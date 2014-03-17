@@ -1,10 +1,14 @@
-riffyApp.factory('loginService', function($http, $q, identity){
+'use strict';
+
+riffyApp.factory('loginService', function($http, $q, userResource, identity){
   return {
     login: function(username, password){
       var dfd = $q.defer();
       $http.post('/login', {username:username, password:password}).then(function(response){
         if (response.data.success){
-          identity.currentUser = response.data.user;
+          var user = new userResource();
+          angular.extend(user, response.data.user)
+          identity.currentUser = user;
           dfd.resolve(true);
         }
         else {
